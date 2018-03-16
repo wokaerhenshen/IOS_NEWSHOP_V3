@@ -124,6 +124,39 @@ class CartRepo {
         task.resume()
     }
     
+    static func addtoCartOnline(Id: Int) -> Bool {
+        print("start adding to .net cart")
+        let myUrl = URL(string:"https://karlshopv1.azurewebsites.net/TokenAPI/IOSAddToCart")
+        var request = URLRequest(url:myUrl!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "content-type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(UserDefaults.standard.string(forKey: "myToken")!, forHTTPHeaderField:"Authorization")
+        request.setValue(UserDefaults.standard.string(forKey: "mysecret")!, forHTTPHeaderField:"secret")
+        let postString = ["Email":UserDefaults.standard.string(forKey: "myEmail")!,"GoodId":Id,"UpdateType":"create"] as [String : Any]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
+            print(postString)
+        }catch let error{
+            print(error.localizedDescription)
+            return false
+        }
+        let task = URLSession.shared.dataTask(with: request as URLRequest){
+            (data,response,err)in
+            
+            // Check for error
+            if err != nil {
+                print("error=\(String(describing: err))")
+            
+            }
+            
+            
+        }
+        task.resume()
+        return true
+        
+    }
+    
     static func deleteOneGood(id:Int){
         print("start delete one good")
         let context = getContext()

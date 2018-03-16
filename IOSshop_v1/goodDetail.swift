@@ -10,6 +10,7 @@ import UIKit
 
 class goodDetail: UIViewController {
 
+    var goodId :Int!
     var goodName : String!
     var goodPrice : Decimal!
     var goodBrief :String!
@@ -44,33 +45,54 @@ class goodDetail: UIViewController {
     
     @IBAction func addToCart(_ sender: UIButton) {
         print("I'm clicked")
-        if ( CartRepo.addToCart(name:goodName)){
+        //The code below is for adding to the local database
+//        if ( CartRepo.addToCart(name:goodName)){
+//            let alert = UIAlertController(title: "Add Success",
+//                                          message: "You have Success Added This Product", preferredStyle: .alert)
+//
+//            let firstAction = UIAlertAction(title: "Done", style: .default) {
+//                (alert: UIAlertAction!) -> Void in
+//                print("You pressed yes")
+//                print("Here is another instruction!")
+//
+//            }
+//            alert.addAction(firstAction)
+//            self.present(alert, animated: true, completion: nil)
+//
+//        }else{
+//            let alert = UIAlertController(title: "Add Failed",
+//                                          message: "You have added this product before!", preferredStyle: .alert)
+//
+//            let firstAction = UIAlertAction(title: "Done", style: .default) {
+//                (alert: UIAlertAction!) -> Void in
+////                print("You pressed yes")
+////                print("Here is another instruction!")
+//
+//            }
+//            alert.addAction(firstAction)
+//            self.present(alert, animated: true, completion: nil)
+//
+//        }
+        
+        
+        if(CartRepo.addtoCartOnline(Id: goodId) == true){
             let alert = UIAlertController(title: "Add Success",
-                                          message: "You have Success Added This Product", preferredStyle: .alert)
-            
+                                            message: "You have Success Added This Product", preferredStyle: .alert)
+        
             let firstAction = UIAlertAction(title: "Done", style: .default) {
                 (alert: UIAlertAction!) -> Void in
                 print("You pressed yes")
                 print("Here is another instruction!")
-                
+        
             }
             alert.addAction(firstAction)
             self.present(alert, animated: true, completion: nil)
-
-        }else{
-            let alert = UIAlertController(title: "Add Failed",
-                                          message: "You have added this product before!", preferredStyle: .alert)
-            
-            let firstAction = UIAlertAction(title: "Done", style: .default) {
-                (alert: UIAlertAction!) -> Void in
-//                print("You pressed yes")
-//                print("Here is another instruction!")
-                
-            }
-            alert.addAction(firstAction)
-            self.present(alert, animated: true, completion: nil)
-            
+    
         }
+        
+        
+        
+        
     }
     
     

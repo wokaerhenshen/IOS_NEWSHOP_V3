@@ -135,6 +135,8 @@ class ProductListVC: UITableViewController {
         // Pass the selected object to the new view controller.
         if (segue.identifier == "showDetail"){
             let detailPage = segue.destination as! goodDetail
+            detailPage.goodId = goodsArray[(self.tableView.indexPathForSelectedRow?.row)!
+            ].id
             detailPage.goodName = goodsArray[(self.tableView.indexPathForSelectedRow?.row)!
                 ].name
             detailPage.goodPrice = goodsArray[(self.tableView.indexPathForSelectedRow?.row)!
