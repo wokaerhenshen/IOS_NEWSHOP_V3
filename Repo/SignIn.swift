@@ -14,11 +14,14 @@ class SignIn: UIViewController {
     
     @IBOutlet weak var password: UITextField!
     
+    let defaults = UserDefaults.standard
     
     @IBAction func signInButton(_ sender: UIButton) {
         print("I want to sign In!")
         
         let email = userName.text
+        self.defaults.set(email,forKey: "myEmail")
+        
         let pwd = password.text
         
         let myUrl = URL(string:"https://karlshopv1.azurewebsites.net/TokenAPI/login")
@@ -30,6 +33,7 @@ class SignIn: UIViewController {
         
         let postString = ["Email":email!,"Password":pwd!] as [String:String]
         do {
+            
             request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
         }catch let error{
             print(error.localizedDescription)
@@ -42,46 +46,46 @@ class SignIn: UIViewController {
                 return
             }
             do {
-                
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
-                
                 if let parseJson = json{
                     let token = parseJson["token"] as? String
+                    let secret = parseJson["secret"] as? String
                     print(token!)
-                    
+                    print(secret!)
+                    self.defaults.set(token,forKey: "myToken")
+                    self.defaults.set(secret,forKey: "mysecret")
                     DispatchQueue.main.async {
                         let homePage =
                             self.storyboard?.instantiateViewController(withIdentifier: "myNav") as! myNav
                         self.present(homePage,animated: true,completion: nil)
                        // let appDelegate = UIApplication.shared.delegate
 //                        appDelegate?.window??.rootViewController = homePage
-                        
                     }
-                    
-                    
-                    
                 }
                 else {
                     print("error in the parse json step")
                 }
-                
-
-                
             }catch {
                 print(error)
             }
         }
-        
         task.resume()
-        
-        
-        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //let   ?? "nil"
+        if (defaults.string(forKey: "myToken") != nil){
+            DispatchQueue.main.async {
+                let homePage =
+                    self.storyboard?.instantiateViewController(withIdentifier: "myNav") as! myNav
+                self.present(homePage,animated: true,completion: nil)
+                // let appDelegate = UIApplication.shared.delegate
+                //                        appDelegate?.window??.rootViewController = homePage
+                
+            }
+        }
         // Do any additional setup after loading the view.
     }
 

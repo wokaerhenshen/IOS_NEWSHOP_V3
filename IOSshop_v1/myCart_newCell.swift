@@ -25,14 +25,16 @@ class myCart_newCell: UITableViewCell {
     @IBAction func addQuantity(_ sender: UIButton) {
         print("add One")
         self.quantity.text = String(Int(self.quantity.text!)!+1)
-        CartRepo.upDate(name: self.dasd.text!, quantity:  Int(self.quantity.text!)!)
+        CartRepo.onlineUpdate(Id: id,type:"add")
+        //CartRepo.upDate(name: self.dasd.text!, quantity:  Int(self.quantity.text!)!)
     }
     
     
     @IBAction func minusQuantity(_ sender: UIButton) {
         print("Minus One")
         self.quantity.text = String(Int(self.quantity.text!)!-1)
-        CartRepo.upDate(name: self.dasd.text!, quantity:  Int(self.quantity.text!)!)
+        CartRepo.onlineUpdate(Id: id,type:"minus")
+        //CartRepo.upDate(name: self.dasd.text!, quantity:  Int(self.quantity.text!)!)
     }
     
     

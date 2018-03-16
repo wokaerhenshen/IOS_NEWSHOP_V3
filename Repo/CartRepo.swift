@@ -11,6 +11,9 @@ import UIKit
 import CoreData
 
 class CartRepo {
+    
+    //let defaults = UserDefaults.standard
+    
     static func addToCart(name:String) -> Bool {
         print("start adding to cart")
         //It seems that I can only call static func in a static func.
@@ -87,6 +90,38 @@ class CartRepo {
         catch{
             
         }
+    }
+    
+    static func onlineUpdate(Id: Int,type: String){
+        print("strat update to the .NET database.")
+        let myUrl = URL(string:"https://karlshopv1.azurewebsites.net/TokenAPI/updateGoodinCart")
+        var request = URLRequest(url:myUrl!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "content-type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(UserDefaults.standard.string(forKey: "myToken")!, forHTTPHeaderField:"Authorization")
+        request.setValue(UserDefaults.standard.string(forKey: "mysecret")!, forHTTPHeaderField:"secret")
+        
+        let postString = ["Email":UserDefaults.standard.string(forKey: "myEmail")!,"GoodId":Id,"UpdateType":type] as [String : Any]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: postString, options: .prettyPrinted)
+            print(postString)
+        }catch let error{
+            print(error.localizedDescription)
+        }
+        let task = URLSession.shared.dataTask(with: request as URLRequest){
+            (data,response,err)in
+            
+            // Check for error
+            if err != nil {
+                print("error=\(String(describing: err))")
+                return
+            }
+            
+            
+        }
+        task.resume()
     }
     
     static func deleteOneGood(id:Int){

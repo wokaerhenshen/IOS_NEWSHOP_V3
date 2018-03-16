@@ -45,6 +45,11 @@ class ViewController: UIViewController {
     
     
     @IBAction func signOut(_ sender: UIButton) {
+        print(defaults.string(forKey: "myToken")!)
+        defaults.removeObject(forKey: "myToken")
+        print(defaults.string(forKey: "myToken") ?? "nil")
+        defaults.removeObject(forKey: "mysecret")
+        defaults.removeObject(forKey: "myEmail")
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -67,6 +72,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        
         var myBool:Bool!
         myBool = defaults.bool(forKey: "myDefaultTheme")
         if (myBool == nil || myBool == true){
@@ -137,7 +147,7 @@ class ViewController: UIViewController {
             sema.signal();
             }.resume()
         
-        // Now we wait until the response block will send send a signal
+        // Now we wait until the response block will send a signal
         sema.wait()
         
     }

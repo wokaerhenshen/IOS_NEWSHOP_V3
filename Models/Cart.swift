@@ -6,15 +6,23 @@
 //  Copyright © 2018 Carolyn Ho. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 struct cartGoods : Codable {
     var id : Int!
     var name : String!
     var quantity : Int!
     
-    init(Initid:Int,InitName:String,InitQuantity:Int) {
-        self.id = Initid
+    enum CodingKeys : String , CodingKey{
+        case id = "goodId"
+        case name = "goodName"
+        case quantity = "quantity"
+        
+    }
+    
+    init(InitId:Int, InitName:String,InitQuantity:Int) {
+        self.id = InitId
         self.name = InitName
         self.quantity = InitQuantity
     }
