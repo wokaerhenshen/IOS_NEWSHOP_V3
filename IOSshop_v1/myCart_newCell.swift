@@ -34,6 +34,11 @@ class myCart_newCell: UITableViewCell {
         print("Minus One")
         self.quantity.text = String(Int(self.quantity.text!)!-1)
         CartRepo.onlineUpdate(Id: id,type:"minus")
+        if (self.quantity.text == "1"){
+            minus.isEnabled = false
+        }else {
+            minus.isEnabled = true
+        }
         //CartRepo.upDate(name: self.dasd.text!, quantity:  Int(self.quantity.text!)!)
     }
     
@@ -49,12 +54,22 @@ class myCart_newCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        if (self.quantity.text == "1"){
+            minus.isEnabled = false
+        }else {
+            minus.isEnabled = true
+        }
+       
         // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        if (self.quantity.text == "1"){
+            minus.isEnabled = false
+        }else {
+            minus.isEnabled = true
+        }
         // Configure the view for the selected state
     }
 

@@ -236,6 +236,14 @@
                                     <action selector="signOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hf5-x5-7Oo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SG1-PY-qPe">
+                                <rect key="frame" x="135" y="182" width="105" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sync Products!"/>
+                                <connections>
+                                    <action selector="manualSync:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kdx-X5-KAa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

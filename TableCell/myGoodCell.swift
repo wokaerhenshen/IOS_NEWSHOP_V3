@@ -10,9 +10,6 @@ import UIKit
 
 class myGoodCell: UITableViewCell {
     
-    
-    
-    
     @IBOutlet weak var goodName: UILabel!
     
     override func awakeFromNib() {
@@ -25,10 +22,4 @@ class myGoodCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
-    
-    
-    
-
 }

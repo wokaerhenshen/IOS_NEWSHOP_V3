@@ -111,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				CB7BDA962051E808006237F0 /* Cart.swift */,
-				CB0CCD082058CC9500B8733A /* SignIn.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -119,6 +118,7 @@
 		CB957966205241AF0020A707 /* Repo */ = {
 			isa = PBXGroup;
 			children = (
+				CB0CCD082058CC9500B8733A /* SignIn.swift */,
 				CB957967205241C20020A707 /* CartRepo.swift */,
 				CB0CCD0A2058CCF200B8733A /* Register.swift */,
 				CB0CCD0C2058EE8900B8733A /* myNav.swift */,

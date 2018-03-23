@@ -55,6 +55,15 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func manualSync(_ sender: UIButton) {
+        
+        print("start syncing from karlshop's api!!!")
+        self.syncFromWebAPI()
+        self.resetDataBase(goods: jsonGoods)
+        
+    }
+    
+    
     
     
     @IBAction func defaultTheme(_ sender: UIButton) {
@@ -156,10 +165,10 @@ class ViewController: UIViewController {
     func resetDataBase(goods : [goodStruct]){
         self.cleanDataBase()
         var i  = 0
-        while (i < goods.count-1){
+        while (i <= goods.count-1){
             print(goods[i].name)
             saveGood(id: goods[i].id, categoryId: goods[i].categoryId, name: goods[i].name, price: goods[i].price, brief: goods[i].brief)
-            i += 1
+            i += 1 
         }
         
     }
